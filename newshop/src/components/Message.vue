@@ -34,12 +34,13 @@
 <script>
 import Vue from 'vue'
 import { Form, RadioGroup, FormItem, RadioButton, Button, Icon, TimePicker } from 'element-ui'
-/* import request from '/86173/桌面/shop/src/config/request.js' */
+import request from '/86173/桌面/shop/src/config/request.js'
 Vue.use(Form).use(RadioGroup).use(FormItem).use(RadioButton).use(Button).use(Icon).use(TimePicker)
 export default {
   data() {
     return {
       labelPosition: 'right',
+      res: '',
       formLabelAlign: {
         name: '',
         address: '',
@@ -49,8 +50,30 @@ export default {
   },
   methods: {
     handleclick() {
-      /*  request.post('/api/cust/insert', this.formLabelAlign)
-      this.$router.push('/sell/shopcard') */
+      if (this.formLabelAlign.name !== '' && !this.formLabelAlign.address !== '' && !this.formLabelAlign.tel !== '') {
+        request.post('/api/cust/insert', this.formLabelAlign).then(res => {
+          console.log(res)
+          this.res = res
+        })
+        if (this.res === 1) {
+          this.$alert('联系方式错误', '提示', {
+            confirmButtonText: '确定'
+          })
+        } else {
+          this.$confirm(' 提交成功，请等待商家联系', '提示', {
+            confirmButtonText: '确定',
+            type: 'warning',
+            center: true
+          })
+          this.$router.push('/sell/shopcard')
+        }
+      } else {
+        this.$confirm('信息不能为空', '提示', {
+          confirmButtonText: '确定',
+          type: 'warning',
+          center: true
+        })
+      }
     }
   }
 }
@@ -62,7 +85,7 @@ export default {
  width: 80%;
  min-height:100vh;
  background: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Fback_pic%2F05%2F42%2F57%2F955a69db655b1df.jpg&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637547009&t=cb4978cb6b82ab01166f219e5198417e');
- background-size: 100% 98%;
+ background-size: 100% 100%;
 }
 .footer{
   bottom: 0px;
@@ -76,12 +99,13 @@ export default {
 }
 .form1{
   width: 1500px;
-  margin-left: 500px;
-  margin-top: 200px;
+  margin-left: 300px;
+  margin-top: 150px;
 }
 .label{
-  margin-top: 150px;
-  font-size: 55px;
+  margin-top: 120px;
+  margin-left: 50px;
+  font-size: 35px;
 color:#61649f;
 /*   border:5px solid #ed556a;
  */}

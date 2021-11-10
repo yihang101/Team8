@@ -7,15 +7,17 @@
     class="demo-ruleForm"
     style=" position: relative;
     width: 55%;
-    height: 550;
+    height: 550px;
     left: 300px;
     top:-625px;"
   >
     <el-form-item label="商品名称" prop="name">
       <el-input v-model="ruleForm.name" />
     </el-form-item>
-
-    <el-form-item label="商品图片" />
+    <el-form-item label="图片路径" prop="url">
+      <el-input v-model="ruleForm.url" />
+    </el-form-item>
+    <!-- <el-form-item label="商品图片" />
     <el-upload
       action="https://localhost:8081/test/upload"
       class="avatar-uploader"
@@ -26,7 +28,7 @@
     >
       <img v-if="imageUrl" :src="imageUrl" class="avatar">
       <i v-else class="el-icon-plus avatar-uploader-icon" />
-    </el-upload>
+    </el-upload> -->
 
     <el-form-item label="商品价格" prop="price">
       <el-input v-model="ruleForm.price" />
@@ -47,7 +49,7 @@
 <script>
 import Vue from 'vue'
 import { Table, TableColumn, Upload } from 'element-ui'
-/* import request from '/86173/桌面/shop/src/config/request' */
+import request from '/86173/桌面/shop/src/config/request'
 
 Vue.use(Table).use(TableColumn).use(Upload)
 export default {
@@ -62,7 +64,7 @@ export default {
         /* number: '', */
         url: '',
         information: '',
-        condition: '已冻结'
+        condition: '未冻结'
       },
       rules: {
         name: [
@@ -97,14 +99,24 @@ export default {
       return isJPG && isLt2M
     },
 
-    /*     submit() {
-      request.post('/api/good/insert', this.ruleForm)
-      this.$confirm('发布成功', '提示', {
-        confirmButtonText: '确定',
-        type: 'warning',
-        center: true
-      })
-    }, */
+    submit() {
+      if (this.ruleForm.name !== '' && this.ruleForm.price !== '' && this.ruleForm.url !== '' && this.ruleForm.price !== '') {
+        request.post('/api/good/insert', this.ruleForm).then(res => {
+          console.log(res)
+        })
+        this.$confirm('发布成功', '提示', {
+          confirmButtonText: '确定',
+          type: 'warning',
+          center: true
+        })
+      } else {
+        this.$confirm('信息有误', '提示', {
+          confirmButtonText: '确定',
+          type: 'warning',
+          center: true
+        })
+      }
+    },
     resetForm(formName) {
       this.$refs[formName].resetFields()
     }

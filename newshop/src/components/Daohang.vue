@@ -12,7 +12,7 @@
         <template slot="title">
           <router-link to="/main" tag="li">
             <i class="el-icon-menu" />
-            <span>历史商品</span>
+            <span style="">历史商品</span>
           </router-link>
         </template>
       </el-menu-item>

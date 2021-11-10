@@ -6,7 +6,6 @@
     <div style=" width:250px; padding-left:30px; font-weight: bold; font-size:30px; color: #002447;margin-top:20px ">购物系统</div>
     <div style=" flex:1" />
     <div class="wel">WelCome</div>
-    <a class="login" @click="handlelogin">管理商品</a>
   </div>
 
 </template>
@@ -30,9 +29,6 @@ export default {
           message: '取消输入'
         })
       })
-    },
-    handlelogin() {
-      this.$router.push('/sell/login')
     }
   }
 }
@@ -41,8 +37,5 @@ export default {
 <style scoped lang="scss">
 .wel{
   width:250px; padding-left:30px; font-weight: bold; font-size:30px; color: #002447;margin-top:20px
-}
-.login{
-  float: right; font-size:20px; color: #002447;margin-top:20px
 }
 </style>

@@ -2,8 +2,14 @@
   <el-table
     :data="tableData"
     class="table"
+    :header-cell-style="{background:'#eff3f6'}"
   >
-
+    <el-table-column
+      fixed
+      prop="goodname"
+      label="商品名称"
+      width="150"
+    />
     <el-table-column
       fixed
       prop="name"
@@ -25,7 +31,7 @@
       label="操作"
     >
       <template slot-scope="scope">
-        <el-button type="primary" size="small" @click="handleClick(scope.row.name)">售卖</el-button>
+        <el-button type="primary" size="small" @click="handleClick(scope.row.name,scope.row.goodname)">售卖</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -34,24 +40,33 @@
 <script>
 import Vue from 'vue'
 import { Table, TableColumn } from 'element-ui'
-/* import request from '/86173/桌面/shop/src/config/request' */
+import request from '/86173/桌面/shop/src/config/request'
 /* import shopSwiper from './ShopSwiper.vue' */
 
 Vue.use(Table).use(TableColumn)
 export default {
   data() {
     return {
-      tableData: []
+      tableData: [{
+      }],
+      FormData: {
+        goodname: '',
+        name: ''
+      }
+
     }
-  }
-  /*   mounted() {
+  },
+  mounted() {
     request.get('/api/cust/get').then(res => {
       this.tableData = res
     })
   },
   methods: {
-    handleClick(name) {
-      request.put(`/api/hisg/sell/${name}`)
+    handleClick(name, goodname) {
+      this.FormData.goodname = goodname
+      this.FormData.name = name
+      console.log(this.FormData)
+      request.post('/api/hisg/find', this.FormData)
       this.$confirm('售卖成功', '提示', {
         confirmButtonText: '确定',
         type: 'warning',
@@ -59,7 +74,7 @@ export default {
       })
     }
 
-  } */
+  }
 
 }
 </script>
@@ -67,9 +82,9 @@ export default {
 <style>
     .table{
         position: relative;
-        width: 55%;
-        height: 550;
-        left: 250px;
-        top:-600px;
+        width: 70%;
+        height: 650;
+        left: 200px;
+        top:-680px;
     }
 </style>

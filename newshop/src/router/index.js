@@ -53,6 +53,10 @@ const routes = [
         path: 'Homedjgood',
         name: 'Homedjgood',
         component: Homedjgood
+      },
+      {
+        path: '',
+        redirect: '/main/Homelishi'
       }
     ]
   },

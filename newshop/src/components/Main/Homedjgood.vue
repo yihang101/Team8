@@ -2,13 +2,19 @@
   <el-table
     :data="tableData"
     class="table"
+    :header-cell-style="{background:'#eff3f6'}"
   >
     <el-table-column
       fixed
-      prop="url"
+      prop="
+    url"
       label="商品图片"
       width="250"
-    />
+    >
+      <template slot-scope="scope">
+        <img :src="scope.row.url" min-width="70" height="70">
+      </template>
+    </el-table-column>
     <el-table-column
       prop="name"
       label="商品名称"
@@ -22,7 +28,7 @@
     <el-table-column
       prop="information"
       label="商品信息"
-      width="400"
+      width="380"
     />
     <el-table-column
       prop="condition"
@@ -32,18 +38,18 @@
     <el-table-column
       fixed="right"
       label="操作"
-      width="120"
+      width="150"
     >
       <template slot-scope="scope">
-        <el-button type="text" size="small" @click="dongJie(scope.row.id)">冻结</el-button>
-        <el-button type="text" size="small" @click="jieDong(scope.row.id)">解冻</el-button>
+        <el-button type="primary" size="small" @click="dongJie(scope.row.id)">冻结</el-button>
+        <el-button type="primary" size="small" @click="jieDong(scope.row.id)">解冻</el-button>
       </template>
     </el-table-column>
   </el-table>
 </template>
 
 <script>
-/* import request from '/86173/桌面/shop/src/config/request.js' */
+import request from '/src/config/request.js'
 export default {
   data() {
     return {
@@ -56,8 +62,8 @@ export default {
         condition: ''
       }]
     }
-  }
-  /*  mounted() {
+  },
+  mounted() {
     request.get('/api/good/get').then(res => {
       this.tableData = res
     })
@@ -74,17 +80,18 @@ export default {
         this.tableData = res
       })
     }
-  } */
+  }
 
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .table{
     position: relative;
     width: 70%;
-    height: 600px;
-    margin-left: 25px;
-    margin-top: -40px;
+    height: 650px;
+    margin-left: 80px;
+    margin-top: 40px;
 }
+
 </style>
