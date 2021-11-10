@@ -1,0 +1,27 @@
+查看分支：git branch
+
+创建分支：git branch <name>
+
+切换分支：git checkout <name>或者git switch <name>
+
+创建+切换分支：git checkout -b <name>或者git switch -c <name>
+
+合并某分支到当前分支：git merge <name>
+
+删除分支：git branch -d <name>
+
+设定邮箱：git config --global user.email ""
+
+设定用户名：git config --global user.name ""
+
+公钥生成：ssh-keygen -t rsa -C “gongxiaoning@cgr.com.cn”
+
+clone： git clone git@github.com:michaelliao/gitskills.git
+
+提交：
+git add
+git commit “标识语”
+git log 标签
+git push -u origin master
+
+链接远程库：git remote add origin git@github.com:michaelliao/learngit.git
