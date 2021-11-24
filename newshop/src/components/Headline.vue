@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import request from '/86173/桌面/shop/src/config/request.js'
+import request from '/src/config/request.js'
 import Vue from 'vue'
 import { Menu, Submenu, MenuItemGroup, MenuItem, Row } from 'element-ui'
 
@@ -45,20 +45,12 @@ export default {
         console.log(value)
         request.put(`/api/login/change/${value}`).then(res => {
           this.res = res
+          if (this.res === 1) {
+            this.$message.error('密码不符合规范，修改失败')
+          } else {
+            this.$message.success('修改成功')
+          }
         })
-        if (this.res === 1) {
-          this.$confirm('密码错误', '提示', {
-            confirmButtonText: '确定',
-            type: 'warning',
-            center: true
-          })
-        } else {
-          this.$confirm('修改成功', '提示', {
-            confirmButtonText: '确定',
-            type: 'success',
-            center: true
-          })
-        }
       }).catch((err) => {
         console.log(err)
       })

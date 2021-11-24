@@ -11,6 +11,11 @@ import Homedjgood from '../components/Main/Homedjgood.vue'
 import Homelishi from '../components/Main/Homelishi.vue'
 import Homefabugood from '../components/Main/Homefabugood.vue'
 import Homeinofmai from '../components/Main/Homeinofmai.vue'
+import Custlogin from '../components/Sell/Custlogin.vue'
+import Register from '../components/Sell/Register.vue'
+import Custlishi from '../components/Sell/Custlishi.vue'
+import Homecustinf from '../components/Main/Homecustinf.vue'
+import Homecustlishi from '../components/Main/Homecustlishi.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -33,7 +38,16 @@ const routes = [
     name: 'Main',
     component: Main,
     children: [
-
+      {
+        path: 'Homecustinf',
+        name: 'Homecustinf',
+        component: Homecustinf
+      },
+      {
+        path: 'Homecustlishi',
+        name: 'Homecustlishi',
+        component: Homecustlishi
+      },
       {
         path: 'Homelishi',
         name: 'Homelishi',
@@ -93,6 +107,21 @@ const routes = [
     name: 'Sell',
     component: Sell,
     children: [
+      {
+        path: 'custlishi',
+        name: 'Custlishi',
+        component: Custlishi
+      },
+      {
+        path: 'register',
+        name: 'Register',
+        component: Register
+      },
+      {
+        path: 'custlogin',
+        name: 'Custlogin',
+        component: Custlogin
+      },
       {
         path: 'login',
         name: 'Login',

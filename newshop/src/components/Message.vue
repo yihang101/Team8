@@ -34,7 +34,7 @@
 <script>
 import Vue from 'vue'
 import { Form, RadioGroup, FormItem, RadioButton, Button, Icon, TimePicker } from 'element-ui'
-import request from '/86173/桌面/shop/src/config/request.js'
+import request from '/src/config/request.js'
 Vue.use(Form).use(RadioGroup).use(FormItem).use(RadioButton).use(Button).use(Icon).use(TimePicker)
 export default {
   data() {
@@ -54,19 +54,19 @@ export default {
         request.post('/api/cust/insert', this.formLabelAlign).then(res => {
           console.log(res)
           this.res = res
+          if (this.res === 1) {
+            this.$alert('联系方式错误', '提示', {
+              confirmButtonText: '确定'
+            })
+          } else {
+            this.$confirm(' 提交成功，请等待商家联系', '提示', {
+              confirmButtonText: '确定',
+              type: 'warning',
+              center: true
+            })
+            this.$router.push('/sell/shopcard')
+          }
         })
-        if (this.res === 1) {
-          this.$alert('联系方式错误', '提示', {
-            confirmButtonText: '确定'
-          })
-        } else {
-          this.$confirm(' 提交成功，请等待商家联系', '提示', {
-            confirmButtonText: '确定',
-            type: 'warning',
-            center: true
-          })
-          this.$router.push('/sell/shopcard')
-        }
       } else {
         this.$confirm('信息不能为空', '提示', {
           confirmButtonText: '确定',

@@ -13,23 +13,7 @@
 <script>
 export default {
   methods: {
-    open() {
-      this.$prompt('请输入新密码', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消'
 
-      }).then(({ value }) => {
-        this.$message({
-          type: 'success',
-          message: '你的密码是: ' + value
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '取消输入'
-        })
-      })
-    }
   }
 }
 </script>

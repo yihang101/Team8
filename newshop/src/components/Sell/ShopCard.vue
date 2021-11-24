@@ -2,7 +2,7 @@
   <div class="dv">
 
     <el-card :body-style="{ padding: '10px' }" class="coloum">
-      <img :src="datalist[0].url" class="image">
+      <!-- <img :src="require('C:/Users/Administrator/Desktop/11.jpg')" class="image"> -->
       <div style="padding: 16px;margin-right:40px">
         <span style="margin-left:35%;font-size:20px;font-weight:bold">{{ datalist[0].name }}</span>
         <div style="margin-left:40%;font-size:20px;font-weight:bold">惊爆价:<el-tag style="font-size:20px;font-weight:bold" effect="dark"> {{ datalist[0].price }}￥ </el-tag>
@@ -71,7 +71,7 @@
 
 <script>
 import Vue from 'vue'
-import request from '/86173/桌面/shop/src/config/request.js'
+import request from '/src/config/request.js'
 import { Menu, Submenu, MenuItemGroup, MenuItem, Row, Card, Col, Tag } from 'element-ui'
 
 Vue.use(Menu).use(MenuItemGroup).use(MenuItem).use(Submenu).use(Row).use(Card).use(Col).use(Tag)
@@ -80,6 +80,7 @@ export default {
     return {
       currentDate: new Date(),
       price: '288$',
+      image: 'require${datalist[0].url}',
       datalist: [
         { name: '网易严选黑凤梨行李箱',
           price: 288,
@@ -89,8 +90,13 @@ export default {
     }
   },
   mounted() {
+  },
+  created() {
     request.get('/api/good/get').then(res => {
       this.datalist = res
+      this.image = `'require('${this.datalist[0].url}')'`
+      console.log(this.datalist)
+      console.log(this.image)
     })
   },
   methods: {

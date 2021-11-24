@@ -27,7 +27,7 @@ public class HisGoodController {
         return hisgm.getall();
     }
 
-    @PutMapping("sell/{name}")
+    @PutMapping("/sell/{name}")
     public String sell(@PathVariable("name") String name){
         hisgm.sell(name);
         return "success";
@@ -35,16 +35,26 @@ public class HisGoodController {
 
     @PostMapping("/find")
     public int find2(@RequestBody Namenaem namenaem){
-        Good good1;
+
+        int str = 0;
+        Good good1 = null;
+        good1 = goodMapper.getall2();
+        System.out.println(good1);
+        if(good1==null) {
+            str=1;           //查找good是否为空，为空返回0
+        }else {
+        System.out.println(namenaem.getGoodname()+namenaem.getCustname());
         good1 =  goodMapper.find2(namenaem.getGoodname());
         HisGood hisg = new HisGood();
         hisg.setInformation(good1.getInformation());
         hisg.setName(good1.getName());
         hisg.setPrice(good1.getPrice());
         hisg.setUrl(good1.getUrl());
-        hisg.setCustomer(namenaem.getName());
+        hisg.setCustomer(namenaem.getCustname());
+            System.out.println(hisg);
         hisGoodMapper.save(hisg);
         goodMapper.delete(namenaem.getGoodname());
-        return 1;
+        }
+        return str;
     }
 }

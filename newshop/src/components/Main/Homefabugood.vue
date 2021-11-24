@@ -1,34 +1,33 @@
 <template>
+
   <el-form
     ref="ruleForm"
     :model="ruleForm"
     :rules="rules"
     label-width="100px"
     class="demo-ruleForm"
-    style=" position: relative;
+    style=" position: absolute;
     width: 55%;
     height: 550px;
-    left: 300px;
-    top:-625px;"
+    left: 15%;
+    top: 20%;"
   >
     <el-form-item label="商品名称" prop="name">
       <el-input v-model="ruleForm.name" />
     </el-form-item>
-    <el-form-item label="图片路径" prop="url">
-      <el-input v-model="ruleForm.url" />
+    <el-form-item label="上传图片" prop="url">
+      <el-upload
+        class="upload-demo"
+        action="https://jsonplaceholder.typicode.com/posts/"
+        :on-preview="handlePreview"
+        :on-remove="handleRemove"
+        :file-list="fileList"
+        list-type="picture"
+      >
+        <el-button size="small" type="primary">点击上传</el-button>
+        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+      </el-upload>
     </el-form-item>
-    <!-- <el-form-item label="商品图片" />
-    <el-upload
-      action="https://localhost:8081/test/upload"
-      class="avatar-uploader"
-      :show-file-list="false"
-      :on-success="handleSuccess"
-      :before-upload="beforeUpload"
-      style="position: relative; left: 100px; top: -55px; "
-    >
-      <img v-if="imageUrl" :src="imageUrl" class="avatar">
-      <i v-else class="el-icon-plus avatar-uploader-icon" />
-    </el-upload> -->
 
     <el-form-item label="商品价格" prop="price">
       <el-input v-model="ruleForm.price" />
@@ -37,24 +36,26 @@
       <el-input v-model="ruleForm.number" />
     </el-form-item> -->
     <el-form-item label="商品描述" prop="information">
-      <el-input v-model="ruleForm.information" type="textarea" />
+      <el-input v-model="ruleForm.information" type="textarea" :rows="5" />
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="submit">立即创建</el-button>
       <el-button @click="resetForm('ruleForm')">重置</el-button>
     </el-form-item>
   </el-form>
+
 </template>
 
 <script>
 import Vue from 'vue'
 import { Table, TableColumn, Upload } from 'element-ui'
-import request from '/86173/桌面/shop/src/config/request'
+import request from '/src/config/request.js'
 
 Vue.use(Table).use(TableColumn).use(Upload)
 export default {
   data() {
     return {
+      res: '',
       imageUrl: '',
       ImgDisk: '',
       NameImg: '',
@@ -103,11 +104,26 @@ export default {
       if (this.ruleForm.name !== '' && this.ruleForm.price !== '' && this.ruleForm.url !== '' && this.ruleForm.price !== '') {
         request.post('/api/good/insert', this.ruleForm).then(res => {
           console.log(res)
-        })
-        this.$confirm('发布成功', '提示', {
-          confirmButtonText: '确定',
-          type: 'warning',
-          center: true
+          this.res = res
+          if (this.res === 1) {
+            this.$confirm('已经存在商品', '提示', {
+              confirmButtonText: '确定',
+              type: 'warning',
+              center: true
+            })
+          } else if (this.res === 2) {
+            this.$confirm('商品价格不能为负', '提示', {
+              confirmButtonText: '确定',
+              type: 'warning',
+              center: true
+            })
+          } else {
+            this.$confirm('发布成功', '提示', {
+              confirmButtonText: '确定',
+              type: 'warning',
+              center: true
+            })
+          }
         })
       } else {
         this.$confirm('信息有误', '提示', {
@@ -128,4 +144,9 @@ export default {
 </script>
 
 <style>
+/* .backgs{
+  position: absolute;
+  width: 70%;
+  height: 50%;
+} */
 </style>

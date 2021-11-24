@@ -1,7 +1,7 @@
 <template>
   <el-table
     :data="tableData"
-    class="table"
+    class="table3"
     :header-cell-style="{background:'#eff3f6'}"
   >
     <el-table-column
@@ -40,7 +40,7 @@
 <script>
 import Vue from 'vue'
 import { Table, TableColumn } from 'element-ui'
-import request from '/86173/桌面/shop/src/config/request'
+import request from '/src/config/request.js'
 /* import shopSwiper from './ShopSwiper.vue' */
 
 Vue.use(Table).use(TableColumn)
@@ -80,11 +80,11 @@ export default {
 </script>
 
 <style>
-    .table{
-        position: relative;
-        width: 70%;
-        height: 650;
-        left: 200px;
-        top:-680px;
+    .table3{
+      position: absolute;
+      width: 70%;
+      height: 600px;
+      left: 12%;
+      top: 18%;
     }
 </style>
