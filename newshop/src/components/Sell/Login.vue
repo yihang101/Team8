@@ -42,7 +42,7 @@
 <script>
 import Vue from 'vue'
 import { Button, Select, Input, Icon, Image, Card, Avatar } from 'element-ui'
-import request from '/86173/桌面/shop/src/config/request.js'
+import request from '/src/config/request.js'
 
 Vue.use(Button).use(Select).use(Input).use(Icon).use(Avatar).use(Image).use(Card)
 export default {
@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     login() {
-      request.post('/api/user/login', this.formdate).then(res => {
+      request.post('http://localhost:8081/user/login', this.formdate).then(res => {
         if (res === 1) {
           this.$router.push('/main')
         } else {

@@ -1,20 +1,15 @@
 package com.example.demo.entiy;
 
 public class Namenaem {
-    public String name;
+    public String custname;
     public String goodname;
 
-    public Namenaem(String name, String goodname) {
-        this.name = name;
-        this.goodname = goodname;
+    public String getCustname() {
+        return custname;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setCustname(String custname) {
+        this.custname = custname;
     }
 
     public String getGoodname() {
@@ -22,6 +17,11 @@ public class Namenaem {
     }
 
     public void setGoodname(String goodname) {
+        this.goodname = goodname;
+    }
+
+    public Namenaem(String custname, String goodname) {
+        this.custname = custname;
         this.goodname = goodname;
     }
 }

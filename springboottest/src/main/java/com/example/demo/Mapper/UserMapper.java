@@ -17,6 +17,7 @@ public interface UserMapper {
 
     List<User> findAll();
 
+
     @Select("select * from login where name = #{name}")
     User find(String name);
 

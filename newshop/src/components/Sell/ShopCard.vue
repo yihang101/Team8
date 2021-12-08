@@ -59,9 +59,9 @@
   }
 .coloum{
     width: 50%;
-      left: 150px;
-      position: relative;
-      top: 100px;
+      left: 30%;
+      position: absolute;
+      top: 20%;
       background: #ccccd6;
 }
   .clearfix:after {
@@ -71,31 +71,38 @@
 
 <script>
 import Vue from 'vue'
-import request from '/86173/桌面/shop/src/config/request.js'
-import { Menu, Submenu, MenuItemGroup, MenuItem, Row, Card, Col, Tag } from 'element-ui'
+import request from '/src/config/request.js'
+import { Menu, Submenu, MenuItemGroup, MenuItem, Row, Card, Col, Tag, Image } from 'element-ui'
 
-Vue.use(Menu).use(MenuItemGroup).use(MenuItem).use(Submenu).use(Row).use(Card).use(Col).use(Tag)
+Vue.use(Menu).use(MenuItemGroup).use(MenuItem).use(Submenu).use(Row).use(Card).use(Col).use(Tag).use(Image)
 export default {
   data() {
     return {
       currentDate: new Date(),
       price: '288$',
+      photo: '',
       datalist: [
-        { name: '网易严选黑凤梨行李箱',
-          price: 288,
+        { name: '目前无商品',
+          price: '',
           information: 'this is info'
         }
       ]
     }
   },
   mounted() {
-    request.get('/api/good/get').then(res => {
+  },
+  created() {
+    request.get('http://localhost:8081/good/get').then(res => {
+      console.log(res.data)
       this.datalist = res
     })
   },
   methods: {
     handleclick() {
       this.$router.push('/message')
+    },
+    Img(url) {
+      return require(url)
     },
     gotolink() {
       this.$router.replace('/sell/login')

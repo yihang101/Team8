@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface CustMapper {
-    @Update("insert into `customer` VALUES (#{id}, #{name}, #{address}, #{tel});")
+    @Update("insert into `customer` VALUES (#{id}, #{custname}, #{address}, #{tel},#{goodname});")
     @Transactional
     void save(Customer Cust);
 

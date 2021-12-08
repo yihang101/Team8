@@ -1,0 +1,89 @@
+<template>
+  <div class="backg">
+    <div class="button1">
+      <el-button type="primary" @click="back">返回</el-button>
+    </div>
+    <div>
+      <el-table
+        :data="tableData"
+        style="width: 85%;"
+        max-height="650px"
+        class="table2"
+        :header-cell-style="{background:'#eff3f6'}"
+      >
+
+        <el-table-column
+          fixed
+          prop="url"
+          label="商品图片"
+          width="300"
+        >
+          <template slot-scope="scope">
+            <img :src="scope.row.url" min-width="70" height="70">
+          </template>
+        </el-table-column>
+        <el-table-column
+          prop="name"
+          label="商品名称"
+          width="200"
+        />
+        <el-table-column
+          prop="price"
+          label="商品价格"
+          width="150"
+        />
+        <el-table-column
+          prop="information"
+          label="商品详情"
+        />
+      </el-table>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      tableData: [{
+        url: '',
+        name: '',
+        price: '',
+        information: ''
+      }]
+    }
+  },
+  mounted() {
+    /* request.get('/api/hisg/get').then(res => {
+      console.log(res)
+      this.tableData = res
+    }) */
+  },
+  methods: {
+    back() {
+      this.$router.push('/main/Homecustinf')
+    }
+  }
+}
+</script>
+
+<style>
+.backg{
+  position: absolute;
+  width: 80%;
+  height: 600px;
+  left: 12%;
+  top: 18%;
+
+}
+.table2{
+  position: absolute;
+  left: 0%;
+  top: 0%;
+}
+.button1{
+  position: absolute;
+  bottom: 5%;
+  right: 0%;
+}
+</style>

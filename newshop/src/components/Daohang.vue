@@ -36,6 +36,12 @@
           <span>冻结商品</span>
         </router-link>
       </el-menu-item>
+      <!-- <el-menu-item index="5">
+        <router-link to="/main/Homecustinf" tag="li">
+          <i class="el-icon-menu" />
+          <span>查看客户信息</span>
+        </router-link>
+      </el-menu-item> -->
     </el-menu>
 
   </div>

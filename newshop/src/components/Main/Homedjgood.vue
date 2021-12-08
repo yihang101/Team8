@@ -1,7 +1,7 @@
 <template>
   <el-table
     :data="tableData"
-    class="table"
+    class="table3"
     :header-cell-style="{background:'#eff3f6'}"
   >
     <el-table-column
@@ -86,12 +86,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.table{
-    position: relative;
+.table3{
+    position: absolute;
     width: 70%;
-    height: 650px;
-    margin-left: 80px;
-    margin-top: 40px;
+    height: 600px;
+    left: 12%;
+    top: 18%;
 }
 
 </style>

@@ -13,9 +13,7 @@ import java.util.List;
 public class GoodController {
     @Resource
     GoodMapper gm;
-    @Resource//调用接口类
-    GoodMapper goodMapper;
-    @GetMapping("get")//决定URL二级地址，同一个@RequestMapping("user")下只允许出现一种不需要定义导航的@GetMapping和@PostMapping方法
+    @GetMapping("/get")//决定URL二级地址，同一个@RequestMapping("user")下只允许出现一种不需要定义导航的@GetMapping和@PostMapping方法
     public List<Good> getGood(){ return gm.getall();
     }
 
@@ -46,22 +44,23 @@ public class GoodController {
         return str;
     }**/
     @PostMapping("insert")
-    public int addGood(@RequestBody Good good){//@RequestBody 将接受的数据包装惩实体 发布商品逻辑判断
-        int str;
-        List<Good> good1 = null;
-        good1 = goodMapper.getall();
-        if(good1!=null){
-            str=1;
-        }
-       else {
+    public String addGood(@RequestBody Good good){//@RequestBody 将接受的数据包装惩实体 发布商品逻辑判断
+        String str = "";
+        Good good1 = null;
+        good1 = gm.getall2();
+        System.out.println(good1);
+        if(good1.getName()==null){
            if(good.getPrice()<=0){
-            str = 2;
+            str = "2";//价格应大于0
             }
             else{
-                gm.save(good);
-                str = 3;
+               gm.delete2();
+                gm.updategood(good);
+                str = "0";
         }
-       }
+       }else{
+            str="1";//已有商品
+        }
         return str;
     }
 

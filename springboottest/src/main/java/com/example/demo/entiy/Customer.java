@@ -6,17 +6,17 @@ import lombok.Data;
 
 public class Customer {
     private Integer id;
-    private String name;
+    private String custname;
     private String address;
     private String tel;
-    private  String goodname;
+    private String goodname;
 
-    public Customer(Integer id, String name, String address, String tel, String goodname) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.tel = tel;
-        this.goodname = goodname;
+    public String getCustname() {
+        return custname;
+    }
+
+    public void setCustname(String custname) {
+        this.custname = custname;
     }
 
     public Integer getId() {
@@ -27,13 +27,6 @@ public class Customer {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getAddress() {
         return address;
@@ -56,6 +49,14 @@ public class Customer {
     }
 
     public void setGoodname(String goodname) {
+        this.goodname = goodname;
+    }
+
+    public Customer(Integer id, String custname, String address, String tel, String goodname) {
+        this.id = id;
+        this.custname = custname;
+        this.address = address;
+        this.tel = tel;
         this.goodname = goodname;
     }
 }

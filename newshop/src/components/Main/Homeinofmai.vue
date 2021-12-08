@@ -1,7 +1,7 @@
 <template>
   <el-table
     :data="tableData"
-    class="table"
+    class="table3"
     :header-cell-style="{background:'#eff3f6'}"
   >
     <el-table-column
@@ -12,7 +12,7 @@
     />
     <el-table-column
       fixed
-      prop="name"
+      prop="custname"
       label="买家姓名"
       width="150"
     />
@@ -31,7 +31,7 @@
       label="操作"
     >
       <template slot-scope="scope">
-        <el-button type="primary" size="small" @click="handleClick(scope.row.name,scope.row.goodname)">售卖</el-button>
+        <el-button type="primary" size="small" @click="handleClick(scope.row.custname,scope.row.goodname)">售卖</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -40,7 +40,7 @@
 <script>
 import Vue from 'vue'
 import { Table, TableColumn } from 'element-ui'
-import request from '/86173/桌面/shop/src/config/request'
+import request from '/src/config/request.js'
 /* import shopSwiper from './ShopSwiper.vue' */
 
 Vue.use(Table).use(TableColumn)
@@ -51,7 +51,7 @@ export default {
       }],
       FormData: {
         goodname: '',
-        name: ''
+        custname: ''
       }
 
     }
@@ -62,9 +62,9 @@ export default {
     })
   },
   methods: {
-    handleClick(name, goodname) {
+    handleClick(custname, goodname) {
       this.FormData.goodname = goodname
-      this.FormData.name = name
+      this.FormData.custname = custname
       console.log(this.FormData)
       request.post('/api/hisg/find', this.FormData)
       this.$confirm('售卖成功', '提示', {
@@ -80,11 +80,11 @@ export default {
 </script>
 
 <style>
-    .table{
-        position: relative;
-        width: 70%;
-        height: 650;
-        left: 200px;
-        top:-680px;
+    .table3{
+      position: absolute;
+      width: 70%;
+      height: 600px;
+      left: 12%;
+      top: 18%;
     }
 </style>
