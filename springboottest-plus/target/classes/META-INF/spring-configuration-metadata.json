@@ -1,0 +1,11 @@
+{
+  "groups": [],
+  "properties": [
+    {
+      "name": "my",
+      "type": "java.lang.String",
+      "description": "Description for my."
+    }
+  ],
+  "hints": []
+}
