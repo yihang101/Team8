@@ -42,7 +42,7 @@
 <script>
 import Vue from 'vue'
 import { Button, Select, Input, Icon, Image, Card, Avatar } from 'element-ui'
-import request from '/src/config/request.js'
+/* import request from '/86173/桌面/shop/src/config/request.js' */
 
 Vue.use(Button).use(Select).use(Input).use(Icon).use(Avatar).use(Image).use(Card)
 export default {
@@ -60,7 +60,7 @@ export default {
     }
   },
   methods: {
-    login() {
+    /*     login() {
       request.post('/api/user/login', this.formdate).then(res => {
         if (res === 1) {
           this.$router.push('/main')
@@ -71,7 +71,7 @@ export default {
           this.formdate = Object.assign({}, '')// 重置form表单
         }
       })
-    }
+    } */
   }
 }
 </script>
@@ -82,7 +82,7 @@ export default {
   }
   .column {
   float: left;
-  width: 20%;
+  width: 50%;
 }
 .column1{
   float: right;
@@ -92,14 +92,13 @@ label{
   font-size: 30px;
 }
 .pic{
-  position: fixed;
-  top: 30%;
-  left: 20%;
+  top: 190px;
+  left: 150px;
 }
 .from{
   position: fixed;
-  top:30%;
-  right: 20%;
+  top:320px;
+  right: 400px;
 }
 
 </style>

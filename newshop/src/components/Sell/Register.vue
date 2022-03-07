@@ -7,7 +7,7 @@
       <div>
         <h2>客户注册</h2>
       </div>
-      <el-form ref="ruleForm" :model="ruleForm" status-icon :rules="rules" label-width="100px" class="registerform">
+      <el-form ref="ruleForm" :model="ruleForm" status-icon :rules="rules" label-width="110px" class="registerform">
         <el-form-item label="用户名" prop="name">
           <el-input v-model="ruleForm.name" type="text" placeholder="请输入用户名" autocomplete="off" />
         </el-form-item>
@@ -102,7 +102,7 @@ export default {
   transform: translate(-50%, -50%);
   width: 750px;
   height: 550px;
-  background-color:azure;
+  background-color: rgb(255, 219, 183);
   border-radius: 3px;
 }
 .registerform{

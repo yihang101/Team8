@@ -36,6 +36,18 @@
           prop="information"
           label="商品详情"
         />
+        <el-table-column
+          prop="state"
+          label="订单状态"
+        />
+        <el-table-column>
+          <template slot-scope="scope">
+            <el-button
+              :disabled="scope.row.state==='已发货'"
+            >取消</el-button>
+
+            <!-- <el-button :v-else>取消</el-button> -->
+          </template></el-table-column>
       </el-table>
     </div>
   </div>
@@ -46,11 +58,13 @@ export default {
   data() {
     return {
       tableData: [{
-        url: '',
-        name: '',
-        price: '',
-        information: ''
-      }]
+        url: 'https://img0.baidu.com/it/u=1239475587,3702728625&fm=26&fmt=auto',
+        name: '苹果',
+        price: '7.8',
+        information: '香甜可口',
+        state: '已发货'
+      }],
+      able: false
     }
   },
   mounted() {
@@ -58,6 +72,10 @@ export default {
       console.log(res)
       this.tableData = res
     }) */
+
+    if (this.tableData.state === '已发货') {
+      this.able = true
+    }
   },
   methods: {
     back() {
