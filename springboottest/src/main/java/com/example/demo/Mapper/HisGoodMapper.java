@@ -1,4 +1,4 @@
-package com.example.demo.Mapper;
+package com.example.demo.mapper;
 
 import com.example.demo.entiy.HisGood;
 import org.apache.ibatis.annotations.Select;
@@ -10,11 +10,12 @@ import java.util.List;
 public interface HisGoodMapper {
     @Select("select * from HisGood")
     List<HisGood> getall();
-
-    @Update("UPDATE `test`.`hisgood` SET `customer` = #{name} WHERE `id` = 1;")
+    @Select("select * from hisgood where custname = #{custname}")
+    List<HisGood> getall2(String custname);
+    @Update("UPDATE `test`.`hisgood` SET `custname` = #{name} WHERE `id` = 1;")
     void sell(String name);
 
-    @Update("insert into `hisgood` VALUES  (#{id},#{name}, #{url},#{information},#{price},#{customer});")
+    @Update("insert into hisgood(name,url,information,price,custname,number,address) VALUES  (#{name}, #{url},#{information},#{price},#{custname},#{number},#{address});")
     @Transactional
     void save(HisGood hisGood);
 }

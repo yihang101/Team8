@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.Mapper.CustMapper;
-import com.example.demo.Mapper.GoodMapper;
+import com.example.demo.entiy.Caaddress;
+import com.example.demo.mapper.CustMapper;
+import com.example.demo.mapper.GoodMapper;
 import com.example.demo.entiy.Customer;
+import com.example.demo.service.CustService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,18 +20,25 @@ public class CustomerController {
     GoodMapper goodMapper;
     @Resource
     CustMapper custm;
+    @Resource
+    private CustService custService;
     @PostMapping("insert")
     public int addcust(@RequestBody Customer cust){
         int str=0;
         System.out.println(cust.getCustname());
         boolean flag= true;
         String str2="";
-        str2= goodMapper.find1("1");
+        str2= goodMapper.find1(cust.getGoodname());
         System.out.println(str2);
         System.out.println(goodMapper.getall2().getName());
         if(str2.equals("已冻结")){
             str=2;//商品已冻结无法填写信息
         }else {
+            cust.setGoodname(goodMapper.getall2().getName());
+            System.out.println(cust);
+            custm.save(cust);
+            str = 0;
+            /**
             System.out.println(goodMapper.getall2().getName());
             char[] tel = cust.getTel().toCharArray();
             for (int i = 0; i < 11; i++) {
@@ -46,7 +55,7 @@ public class CustomerController {
                 System.out.println(cust);
                 custm.save(cust);
                 str = 0;
-            }
+            }**/
 
         }
         return str;
@@ -57,9 +66,21 @@ public class CustomerController {
         return custm.getall();
 
     }
+
     /*@PostMapping
     public result<> login(@RequestBody Customer cust){
 
     }*/
+
+    @GetMapping("/getaddress/{id}")
+    public List<String> getAddress(@PathVariable("id")int custid){
+        return custService.getAddress(custid);
+    }
+
+    @PostMapping("alter_default_address")
+    public void alterDefaultAddress(@RequestBody Caaddress caaddress){
+        custService.alterDefaultAddress(caaddress);
+    }
+
 
 }

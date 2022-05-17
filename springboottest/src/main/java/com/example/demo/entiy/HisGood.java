@@ -9,7 +9,9 @@ public class HisGood {
     private String url;
     private String information;
     private float price;
-    private String customer;
+    private String custname;
+    private int number;
+    private String address;
 
     public Integer getId() {
         return id;
@@ -51,11 +53,27 @@ public class HisGood {
         this.price = price;
     }
 
-    public String getCustomer() {
-        return customer;
+    public String getCustname() {
+        return custname;
     }
 
-    public void setCustomer(String customer) {
-        this.customer = customer;
+    public void setCustname(String custname) {
+        this.custname = custname;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

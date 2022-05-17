@@ -10,13 +10,15 @@ public class Customer {
     private String address;
     private String tel;
     private String goodname;
+    private int number;
 
-    public String getCustname() {
-        return custname;
-    }
-
-    public void setCustname(String custname) {
+    public Customer(Integer id, String custname, String address, String tel, String goodname, int number) {
+        this.id = id;
         this.custname = custname;
+        this.address = address;
+        this.tel = tel;
+        this.goodname = goodname;
+        this.number = number;
     }
 
     public Integer getId() {
@@ -27,6 +29,13 @@ public class Customer {
         this.id = id;
     }
 
+    public String getCustname() {
+        return custname;
+    }
+
+    public void setCustname(String custname) {
+        this.custname = custname;
+    }
 
     public String getAddress() {
         return address;
@@ -52,11 +61,11 @@ public class Customer {
         this.goodname = goodname;
     }
 
-    public Customer(Integer id, String custname, String address, String tel, String goodname) {
-        this.id = id;
-        this.custname = custname;
-        this.address = address;
-        this.tel = tel;
-        this.goodname = goodname;
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 }

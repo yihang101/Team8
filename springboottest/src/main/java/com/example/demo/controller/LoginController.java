@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.Mapper.LoginMapper;
-import com.example.demo.entiy.Login;
+import com.example.demo.mapper.LoginMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;

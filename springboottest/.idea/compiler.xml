@@ -7,17 +7,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="springboottest" />
         <module name="springboottest2" />
         <module name="springboottest1" />
+        <module name="demo" />
+        <module name="springboottest" />
         <module name="springboottestp" />
+        <module name="springboottest123" />
+        <module name="springboottest-plus" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="demo" options="-parameters" />
       <module name="springboottest" options="-parameters" />
+      <module name="springboottest-plus" options="-parameters" />
       <module name="springboottest1" options="-parameters" />
+      <module name="springboottest123" options="-parameters" />
       <module name="springboottest2" options="-parameters" />
       <module name="springboottestp" options="-parameters" />
     </option>

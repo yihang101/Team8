@@ -1,14 +1,14 @@
 package com.example.demo.controller;
 
-import com.example.demo.Mapper.UserMapper;
+import com.example.demo.mapper.CustMapper;
+import com.example.demo.mapper.UserMapper;
+import com.example.demo.entiy.CustomerZC;
 import com.example.demo.entiy.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
-import java.sql.Wrapper;
-import java.util.List;
+
 
 
 @RestController//让其他文件能找到地址
@@ -21,18 +21,9 @@ public class UserController  {
 
     @Resource//调用接口类
     UserMapper userMapper;
-   /*@GetMapping("get")//决定URL二级地址，同一个@RequestMapping("user")下只允许出现一种不需要定义导航的@GetMapping和@PostMapping方法
-    public List<User> getUser(){
-        return userMapper.findAll();
-    }
-    @PostMapping("insert")
-    public int addUser(@RequestBody User user){//@RequestBody 将接受的数据包装惩实体
-        userMapper.save(user);
-        return 1;
-    }*/
 
     @Resource
-    UserMapper user2;
+    CustMapper custMapper;
 
     @PostMapping("/login")
     public int find(@RequestBody User user){
@@ -48,7 +39,102 @@ public class UserController  {
             }}
         return i;
     }
+    @PostMapping("/custlogin")
+    public int find(@RequestBody CustomerZC customerZC){
+        int i =0;
+        CustomerZC cust = null;
 
+        cust =  userMapper.findcust(customerZC.getCustname());
+        if(cust==null){
+            i=0;
+        }else{
+            if(cust.getCustname().equals(customerZC.getCustname())&&cust.getPwd().equals(customerZC.getPwd())){
+                i=cust.getId();
+            }}
+        return i;
+    }
+    @PostMapping("/zhuce")
+    public int zhuce(@RequestBody CustomerZC customerzc){
+
+        int str =0;
+        CustomerZC customer= null;
+        customer=custMapper.find(customerzc.getCustname());
+        System.out.println(customerzc);
+        System.out.println(customer);
+
+        if(customer!=null){
+            str=4;                  //用户名已存在
+        }else {
+            boolean flagtel = true;
+            boolean flagusername = true;
+            boolean flagpwd = true;
+            char[] tel = customerzc.getTel().toCharArray();
+
+            for (int i = 0; i < 11; i++) {
+                if (tel[i] < 48 || tel[i] > 59) {
+                    flagtel = false;
+                }
+            }
+            if (flagtel == false) {
+                str = 1;//手机号码应为数字
+                System.out.println(1);
+            }
+            char[] username = customerzc.getCustname().toCharArray();
+            int shuzi1 = 0;
+            int zimu1 = 0;
+            for (int i = 0; i < customerzc.getCustname().length(); i++) {
+                if (username[i] >= '0' && username[i] <= '9') {
+                    shuzi1 = 1;
+                } else if (username[i] >= 'A' && username[i] <= 'Z' || username[i] >= 'a' && username[i] <= 'z') {
+                    zimu1 = 1;
+                } else {
+                    flagusername = false;
+                    break;
+                }
+            }
+            if (shuzi1 == 1 && zimu1 == 1 && flagusername == true) {
+                flagusername = true;
+            } else {
+                flagusername = false;
+                str=2;          //用户名不规范
+                System.out.println(2);
+            }
+            char[] pwd = customerzc.getPwd().toCharArray();
+            int shuzi2 = 0;
+            int zimu2 = 0;
+            for (int i = 0; i < customerzc.getPwd().length(); i++) {
+                if (pwd[i] >= '0' && pwd[i] <= '9') {
+                    shuzi2 = 1;
+                } else if (pwd[i] >= 'A' && pwd[i] <= 'Z' || pwd[i] >= 'a' && pwd[i] <= 'z') {
+                    zimu2 = 1;
+                } else {
+                    flagpwd = false;
+                    break;
+                }
+            }
+            if (shuzi2 == 1 && zimu2 == 1 && flagpwd == true) {
+                flagpwd = true;
+            } else {
+                flagpwd = false;
+                str = 3;                //密码不规范
+                System.out.println(3);
+            }
+            System.out.println(flagtel);
+            System.out.println(flagusername);
+            System.out.println(flagpwd);
+            System.out.println(customerzc);
+            if (flagpwd == true && flagpwd == true && flagusername == true) {
+                custMapper.zhuce(customerzc);
+            }
+        }
+        return str;                 //若返回为0则正确
+    }
+    @PostMapping("/address")
+    public int upaddress(@RequestBody CustomerZC customerZC){
+        System.out.println(customerZC);
+        custMapper.upaddress(customerZC);
+        return 1;
+    }
 
 }
 

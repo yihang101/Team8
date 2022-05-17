@@ -10,7 +10,10 @@ public class Good {
     private String url;
     private String information;
     private float price;
+    private int number;
     private String condition;
+    private String classify1;
+    private String classify2;
 
     public Integer getId() {
         return id;
@@ -52,11 +55,35 @@ public class Good {
         this.price = price;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
     public String getCondition() {
         return condition;
     }
 
     public void setCondition(String condition) {
         this.condition = condition;
+    }
+
+    public String getClassify1() {
+        return classify1;
+    }
+
+    public void setClassify1(String classify1) {
+        this.classify1 = classify1;
+    }
+
+    public String getClassify2() {
+        return classify2;
+    }
+
+    public void setClassify2(String classify2) {
+        this.classify2 = classify2;
     }
 }

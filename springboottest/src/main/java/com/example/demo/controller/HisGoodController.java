@@ -1,11 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.Mapper.GoodMapper;
-import com.example.demo.Mapper.HisGoodMapper;
-import com.example.demo.entiy.Customer;
-import com.example.demo.entiy.Good;
-import com.example.demo.entiy.HisGood;
-import com.example.demo.entiy.Namenaem;
+import com.example.demo.mapper.CustMapper;
+import com.example.demo.mapper.GoodMapper;
+import com.example.demo.mapper.HisGoodMapper;
+import com.example.demo.entiy.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +14,8 @@ import java.util.List;
 @RequestMapping("/hisg")
 public class HisGoodController {
     @Autowired
+    @Resource//调用接口类
+            CustMapper customer;
     @Resource//调用接口类
             GoodMapper goodMapper;
     @Resource//调用接口类
@@ -37,11 +37,17 @@ public class HisGoodController {
     public int find2(@RequestBody Namenaem namenaem){
 
         int str = 0;
+        CustomerZC cust =null;
+        cust = customer.find(namenaem.getCustname());
         Good good1 = null;
-        good1 = goodMapper.getall2();
+        good1 = goodMapper.find2(namenaem.goodname);
         System.out.println(good1);
         if(good1==null) {
-            str=1;           //查找good是否为空，为空返回0
+            str=1;           //查找good是否为空，为空返回1
+            System.out.println(1);
+        }else if(good1.getNumber()<=namenaem.getNumber()){
+            str=2;           //剩余数量少于库存
+            System.out.println(2);
         }else {
         System.out.println(namenaem.getGoodname()+namenaem.getCustname());
         good1 =  goodMapper.find2(namenaem.getGoodname());
@@ -50,10 +56,19 @@ public class HisGoodController {
         hisg.setName(good1.getName());
         hisg.setPrice(good1.getPrice());
         hisg.setUrl(good1.getUrl());
-        hisg.setCustomer(namenaem.getCustname());
+        hisg.setCustname(namenaem.getCustname());
+        hisg.setAddress(cust.getAddress());
+        hisg.setNumber(namenaem.getNumber());
             System.out.println(hisg);
-        hisGoodMapper.save(hisg);
-        goodMapper.delete(namenaem.getGoodname());
+            hisGoodMapper.save(hisg);
+            int number = good1.getNumber()-namenaem.getNumber();
+            System.out.println(number);
+            Good good2 = new Good();
+           good2.setNumber(number);
+           good2.setName(namenaem.getGoodname());
+            goodMapper.upgood1(good2);
+
+       /** goodMapper.delete(namenaem.getGoodname());**/
         }
         return str;
     }
