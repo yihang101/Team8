@@ -30,7 +30,19 @@
     <el-table-column
       prop="information"
       label="商品详情"
+      width="400"
     />
+
+    <el-table-column
+      label="售后"
+      width="150"
+    >
+      <template slot-scope="scope">
+        <el-button v-if="scope.row.flag===1" class="copl">处理</el-button>
+        <div v-else>否</div>
+      </template>
+    </el-table-column>
+
     <el-table-column
       prop="customer"
       label="买家"
@@ -42,20 +54,21 @@
 
 <script>
 import Vue from 'vue'
-import { Table, TableColumn } from 'element-ui'
+import { Table, TableColumn, Button } from 'element-ui'
 import request from '/src/config/request.js'
 /* import shopSwiper from './ShopSwiper.vue' */
 
-Vue.use(Table).use(TableColumn)
+Vue.use(Table).use(TableColumn).use(Button)
 export default {
   data() {
     return {
       tableData: [{
-        url: '',
-        name: '',
-        price: '',
-        information: '',
-        customer: ''
+        url: 'https://img0.baidu.com/it/u=1239475587,3702728625&fm=26&fmt=auto',
+        name: '苹果',
+        price: '7.8',
+        information: '香甜可口',
+        customer: 'jack',
+        flag: 1
       }]
     }
   },
@@ -75,5 +88,9 @@ export default {
     height: 600px;
     left: 12%;
     top: 18%;
+  }
+  .copl{
+    background-color:springgreen ;
+    color: black;
   }
 </style>

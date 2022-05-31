@@ -28,8 +28,22 @@
       label="操作"
       width="150"
     >
-      <template slot-scope="scope">
-        <el-button type="primary" size="small" @click="handleClick(scope.row.name)">查看购买历史</el-button>
+      <template>
+
+        <el-button type="text" @click="table = true">查看购买历史</el-button>
+        <el-drawer
+          title="我嵌套了表格!"
+          :visible.sync="table"
+          direction="rtl"
+          size="50%"
+        >
+          <el-table :data="gridData">
+            <el-table-column property="date" label="日期" width="150" />
+            <el-table-column property="name" label="姓名" width="200" />
+            <el-table-column property="address" label="地址" />
+          </el-table>
+        </el-drawer>
+
       </template>
     </el-table-column>
   </el-table>
@@ -40,8 +54,44 @@
 export default {
   data() {
     return {
+      table: false,
+      loading: false,
+      gridData: [{
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }],
+      formLabelWidth: '80px',
+      timer: null,
+
       tableData: [{
-      }]
+        name: 'smm',
+        tel: '18358355517',
+        address: '浙江工商大学'
+      },
+      {
+        name: 'sjl',
+        tel: '139573587456',
+        address: '浙江工商大学'
+      },
+      {
+        name: 'jack',
+        tel: '13819024645',
+        address: '浙江工商大学'
+      }
+      ]
       /* FormData: {
         name: ''
       } */

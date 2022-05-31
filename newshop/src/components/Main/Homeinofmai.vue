@@ -48,6 +48,28 @@ export default {
   data() {
     return {
       tableData: [{
+        goodname: '奥妙洗衣凝珠',
+        name: 'smm',
+        tel: '139576958451',
+        address: '浙江工商大学'
+      },
+      {
+        goodname: '奥妙洗衣凝珠',
+        name: '胡熟悉',
+        tel: '13954545851',
+        address: '浙江工商大学'
+      },
+      {
+        goodname: '奥妙洗衣凝珠',
+        name: '周康杰',
+        tel: '18568948451',
+        address: '浙江工商大学'
+      },
+      {
+        goodname: '奥妙洗衣凝珠',
+        name: 'iu',
+        tel: '1888858451',
+        address: '浙江工商大学'
       }],
       FormData: {
         goodname: '',

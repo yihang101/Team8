@@ -16,6 +16,11 @@
         </el-form-item>
         <el-form-item>
           <i class="el-icon-goods" style="font-size:30px" />
+          <label style="font-size:25px;color:#2b73af">购买数量:</label>
+          <el-input v-model="formLabelAlign.num" class="right" style="width:20%" clearable />
+        </el-form-item>
+        <el-form-item>
+          <i class="el-icon-goods" style="font-size:30px" />
           <label style="font-size:25px;color:#2b73af">收货地址:</label>
           <el-input v-model="formLabelAlign.address" class="right" style="width:20%" clearable />
         </el-form-item>
@@ -44,7 +49,8 @@ export default {
       formLabelAlign: {
         name: '',
         address: '',
-        tel: ''
+        tel: '',
+        num: ''
       }
     }
   },
