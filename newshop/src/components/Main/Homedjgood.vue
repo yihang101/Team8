@@ -55,11 +55,11 @@ export default {
     return {
       tableData: [{
         id: '',
-        url: '',
-        name: '',
-        price: '',
-        information: '',
-        condition: ''
+        url: 'https://img2.baidu.com/it/u=3547734642,2083669832&fm=26&fmt=auto',
+        name: '奥妙洗衣凝珠',
+        price: '18.88',
+        information: '护衣不伤衣，除渍效果强',
+        condition: '未冻结'
       }]
     }
   },

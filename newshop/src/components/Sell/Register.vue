@@ -102,7 +102,7 @@ export default {
   transform: translate(-50%, -50%);
   width: 750px;
   height: 550px;
-  background-color:aliceblue;
+  background-color: rgb(255, 219, 183);
   border-radius: 3px;
 }
 .registerform{

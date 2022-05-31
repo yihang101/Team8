@@ -12,7 +12,12 @@
         <el-form-item>
           <i class="el-icon-user" style="font-size:30px" />
           <label style="font-size:25px;color:#2b73af">您的姓名:</label>
-          <el-input v-model="formLabelAlign.custname" class="right" style="width:20%" clearable />
+          <el-input v-model="formLabelAlign.name" class="right" style="width:20%" clearable />
+        </el-form-item>
+        <el-form-item>
+          <i class="el-icon-goods" style="font-size:30px" />
+          <label style="font-size:25px;color:#2b73af">购买数量:</label>
+          <el-input v-model="formLabelAlign.num" class="right" style="width:20%" clearable />
         </el-form-item>
         <el-form-item>
           <i class="el-icon-goods" style="font-size:30px" />
@@ -42,15 +47,16 @@ export default {
       labelPosition: 'right',
       res: '',
       formLabelAlign: {
-        custname: '',
+        name: '',
         address: '',
-        tel: ''
+        tel: '',
+        num: ''
       }
     }
   },
   methods: {
     handleclick() {
-      if (this.formLabelAlign.custname !== '' && !this.formLabelAlign.address !== '' && !this.formLabelAlign.tel !== '') {
+      if (this.formLabelAlign.name !== '' && !this.formLabelAlign.address !== '' && !this.formLabelAlign.tel !== '') {
         request.post('/api/cust/insert', this.formLabelAlign).then(res => {
           console.log(res)
           this.res = res
@@ -58,19 +64,13 @@ export default {
             this.$alert('联系方式错误', '提示', {
               confirmButtonText: '确定'
             })
-          } else if (this.res === 0) {
+          } else {
             this.$confirm(' 提交成功，请等待商家联系', '提示', {
               confirmButtonText: '确定',
               type: 'warning',
               center: true
             })
             this.$router.push('/sell/shopcard')
-          } else if (this.res === 2) {
-            this.$confirm(' 商品已冻结', '提示', {
-              confirmButtonText: '确定',
-              type: 'warning',
-              center: true
-            })
           }
         })
       } else {

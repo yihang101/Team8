@@ -48,6 +48,9 @@
 
             <!-- <el-button :v-else>取消</el-button> -->
           </template></el-table-column>
+        <el-table-column>
+          <el-button class="type1" @click="method1">售后申请</el-button>
+        </el-table-column>
       </el-table>
     </div>
   </div>
@@ -80,7 +83,11 @@ export default {
   methods: {
     back() {
       this.$router.push('/sell/custlogin')
+    },
+    method1() {
+      this.$router.push('/person/sellback')
     }
+
   }
 }
 </script>
@@ -95,5 +102,8 @@ export default {
   position: absolute;
   bottom: 5%;
   right: 5%;
+}
+.type1{
+  background-color: cadetblue;
 }
 </style>

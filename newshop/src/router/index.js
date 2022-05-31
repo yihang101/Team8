@@ -4,8 +4,8 @@ import VueRouter from 'vue-router'
 import Login from '../components/Sell/Login.vue'
 import Reset from '../components/Sell/Reset.vue'
 import Sell from '../components/Sell.vue'
+import Person from '../components/Person.vue'
 import Message from '../components/Message.vue'
-import ShopCard from '../components/Sell/ShopCard.vue'
 import Main from '../components/Main.vue'
 import Homedjgood from '../components/Main/Homedjgood.vue'
 import Homelishi from '../components/Main/Homelishi.vue'
@@ -13,9 +13,13 @@ import Homefabugood from '../components/Main/Homefabugood.vue'
 import Homeinofmai from '../components/Main/Homeinofmai.vue'
 import Custlogin from '../components/Sell/Custlogin.vue'
 import Register from '../components/Sell/Register.vue'
-import Custlishi from '../components/Sell/Custlishi.vue'
+import Custlishi from '../components/Person/Custlishi.vue'
+import SellBack from '../components/Person/SellBack.vue'
+import Host from '../components/Sell/Host.vue'
 import Homecustinf from '../components/Main/Homecustinf.vue'
 import Homecustlishi from '../components/Main/Homecustlishi.vue'
+import Shopinf from '../components/Sell/Shopinf.vue'
+import ShopCart from '../components/Person/ShopCart.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -74,43 +78,47 @@ const routes = [
       }
     ]
   },
-
-  /*  {
-    path: '/Main',
-    component: Main,
+  {
+    path: '/person',
+    name: 'Person',
+    component: Person,
     children: [
       {
-        path: '/Homelishi',
-        name: 'Homelishi',
-        component: Homelishi
+        path: 'custlishi',
+        name: 'Custlishi',
+        component: Custlishi
       },
       {
-        path: '/Homeinofmai',
-        name: 'Homeinofmai',
-        component: Homeinofmai
+        path: 'ShopCart',
+        name: 'ShopCart',
+        component: ShopCart
       },
       {
-        path: '/Homefabugood',
-        name: 'Homefabugood',
-        component: Homefabugood
+        path: 'SellBack',
+        name: 'SellBack',
+        component: SellBack
       },
       {
-        path: '/Homedjgood',
-        name: 'Homedjgood',
-        component: Homedjgood
+        path: '',
+        redirect: 'ShopCart'
       }
     ]
-  }, */
 
+  },
   {
     path: '/sell',
     name: 'Sell',
     component: Sell,
     children: [
       {
-        path: 'custlishi',
-        name: 'Custlishi',
-        component: Custlishi
+        path: 'shopf',
+        name: 'Shopf',
+        component: Shopinf
+      },
+      {
+        path: 'Host',
+        name: 'Host',
+        component: Host
       },
       {
         path: 'register',
@@ -133,13 +141,8 @@ const routes = [
         component: Reset
       },
       {
-        path: 'shopcard',
-        name: 'shopcard',
-        component: ShopCard
-      },
-      {
         path: '',
-        redirect: '/sell/shopcard'
+        redirect: '/sell/login'
       }
     ]
   }

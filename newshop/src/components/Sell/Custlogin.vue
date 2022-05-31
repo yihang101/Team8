@@ -10,13 +10,13 @@
     <div class="login_box">
 
       <!--表单提交区域-->
-      <el-form ref="loginFormRef" :rules="loginFormRules" label-width="100px" class="login_form" :model="loginForm">
+      <el-form ref="loginFormRef" :rules="loginFormRules" label-width="70px" class="login_form" :model="loginForm">
         <!--用户名-->
-        <el-form-item label="用户名" prop="username" class="item">
+        <el-form-item label="用户名" style="font-size:20px;font-weight:bold" prop="username" class="item">
           <el-input v-model="loginForm.username" prefix-icon="iconfont icon-user" placeholder="请输入账号" clearable />
         </el-form-item>
         <!--密码-->
-        <el-form-item label="密码" prop="password" class="item">
+        <el-form-item label="密码" style="font-size:20px;font-weight:bold" prop="password" class="item">
           <el-input v-model="loginForm.password" type="password" prefix-icon="iconfont icon-3702mima" placeholder="请输入密码" show-password clearable />
         </el-form-item>
         <!--按钮区-->
@@ -93,23 +93,24 @@ export default {
 }
 .piclocation{
   position: absolute;
-  left:10%;
+  left:0%;
   bottom:0%
 }
 .login_box {
   position: absolute;
   top: 55%;
-  left: 70%;
+  left: 62%;
   transform: translate(-50%, -50%);
-  width: 650px;
+  width: 600px;
   height: 450px;
   border-radius: 3px;
+/*   background-color: azure; */
 }
 .login_form {
     box-sizing: border-box;
     position: absolute;
     bottom: 25%;
-    width: 90%;
+    width: 95%;
     padding: 0 20px;
     align-items: center;
 }

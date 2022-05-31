@@ -12,7 +12,7 @@
     />
     <el-table-column
       fixed
-      prop="custname"
+      prop="name"
       label="买家姓名"
       width="150"
     />
@@ -31,7 +31,7 @@
       label="操作"
     >
       <template slot-scope="scope">
-        <el-button type="primary" size="small" @click="handleClick(scope.row.custname,scope.row.goodname)">售卖</el-button>
+        <el-button type="primary" size="small" @click="handleClick(scope.row.name,scope.row.goodname)">售卖</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -48,10 +48,32 @@ export default {
   data() {
     return {
       tableData: [{
+        goodname: '奥妙洗衣凝珠',
+        name: 'smm',
+        tel: '139576958451',
+        address: '浙江工商大学'
+      },
+      {
+        goodname: '奥妙洗衣凝珠',
+        name: '胡熟悉',
+        tel: '13954545851',
+        address: '浙江工商大学'
+      },
+      {
+        goodname: '奥妙洗衣凝珠',
+        name: '周康杰',
+        tel: '18568948451',
+        address: '浙江工商大学'
+      },
+      {
+        goodname: '奥妙洗衣凝珠',
+        name: 'iu',
+        tel: '1888858451',
+        address: '浙江工商大学'
       }],
       FormData: {
         goodname: '',
-        custname: ''
+        name: ''
       }
 
     }
@@ -62,9 +84,9 @@ export default {
     })
   },
   methods: {
-    handleClick(custname, goodname) {
+    handleClick(name, goodname) {
       this.FormData.goodname = goodname
-      this.FormData.custname = custname
+      this.FormData.name = name
       console.log(this.FormData)
       request.post('/api/hisg/find', this.FormData)
       this.$confirm('售卖成功', '提示', {

@@ -12,7 +12,7 @@
     left: 15%;
     top: 20%;"
   >
-    <el-form-item label="商品名称" prop="name">
+    <el-form-item label="标题描述" prop="name">
       <el-input v-model="ruleForm.name" />
     </el-form-item>
     <el-form-item label="上传图片" prop="url">
@@ -28,18 +28,14 @@
         <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
       </el-upload>
     </el-form-item>
-
-    <el-form-item label="商品价格" prop="price">
-      <el-input v-model="ruleForm.price" />
-    </el-form-item>
-    <!-- <el-form-item label="商品数量" prop="number">
-      <el-input v-model="ruleForm.number" />
-    </el-form-item> -->
-    <el-form-item label="商品描述" prop="information">
+    <el-form-item label="描述" prop="information">
       <el-input v-model="ruleForm.information" type="textarea" :rows="5" />
     </el-form-item>
+    <el-form-item label="联系方式" prop="number">
+      <el-input v-model="ruleForm.number" />
+    </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="submit">立即创建</el-button>
+      <el-button type="primary" @click="submit">提交</el-button>
       <el-button @click="resetForm('ruleForm')">重置</el-button>
     </el-form-item>
   </el-form>
@@ -61,24 +57,15 @@ export default {
       NameImg: '',
       ruleForm: {
         name: '',
-        price: '',
-        /* number: '', */
         url: '',
-        information: '',
-        condition: '未冻结'
+        information: ''
       },
       rules: {
         name: [
-          { required: true, message: '请输入商品名称', trigger: 'blur' }
-        ],
-        price: [
-          { required: true, message: '请输入价格', trigger: 'change' }
-        ],
-        number: [
-          { required: true, message: '请输入数量', trigger: 'change' }
+          { required: true, message: '请输入标题名称', trigger: 'blur' }
         ],
         information: [
-          { required: true, message: '请填写商品信息', trigger: 'blur' }
+          { required: true, message: '请填写问题描述', trigger: 'blur' }
         ]
       }
     }
@@ -106,19 +93,13 @@ export default {
           console.log(res)
           this.res = res
           if (this.res === 1) {
-            this.$confirm('已经存在商品', '提示', {
-              confirmButtonText: '确定',
-              type: 'warning',
-              center: true
-            })
-          } else if (this.res === 2) {
-            this.$confirm('商品价格不能为负', '提示', {
+            this.$confirm('提交失败', '提示', {
               confirmButtonText: '确定',
               type: 'warning',
               center: true
             })
           } else {
-            this.$confirm('发布成功', '提示', {
+            this.$confirm('反馈成功', '提示', {
               confirmButtonText: '确定',
               type: 'warning',
               center: true
